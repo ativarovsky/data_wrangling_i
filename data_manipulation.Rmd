@@ -48,6 +48,17 @@ filter(litters_data, pups_born_alive < 6)
 filter(litters_data, pups_born_alive < 6, group == "Con7")
 
 drop.na(litters_data, gd0_weight)
-
 ```
+
+
+## Mutate
+
+```{r}
+mutate(litters_data, 
+       wt_gain = gd18_weight - gd0_weight, 
+       group = str_to_lower(group))
+```
+
+
+## Arrange
 
