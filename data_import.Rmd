@@ -7,8 +7,14 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library (tidyverse)
+library(tidyverse)
 
 ```
 
 
+## load in a dataset
+
+```{r}
+litters_data = read_csv(file = "./data/FAS_litters.csv")
+litters_data = janitor::clean_names(litters_data)
+```
