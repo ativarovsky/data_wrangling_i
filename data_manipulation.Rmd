@@ -23,6 +23,11 @@ pups_data = janitor::clean_names(pups_data)
 ```
 
 ## Selecting
+### learning assessment 
+```{r}
+select (pups_data, litter_number, sex, pd_ears)
+```
+
 
 ```{r}
 select(litters_data, group, litter_number)
@@ -38,6 +43,12 @@ select(litters_data, GROUP=group, litter_number)
 
 
 ## Filtering
+### Learning assessment 
+```{r}
+filter(pups_data, sex == 1)
+filter(pups_data, pd_walk < 11 & sex == 2)
+```
+
 ```{r}
 filter(litters_data, group=="Con7")
 
@@ -47,11 +58,16 @@ filter(litters_data, pups_born_alive < 6)
 
 filter(litters_data, pups_born_alive < 6, group == "Con7")
 
-drop.na(litters_data, gd0_weight)
 ```
 
 
 ## Mutate
+### Learning assessment 
+```{r}
+mutate(pups_data,
+        pd_minus_7 = pd_pivot - 7)
+
+```
 
 ```{r}
 mutate(litters_data, 
@@ -61,4 +77,23 @@ mutate(litters_data,
 
 
 ## Arrange
+
+```{r}
+```
+
+
+## Piping
+
+Create a collection of commands
+
+### Learning assessment 
+```{r}
+pups_data = read_csv(file = "./data/FAS_pups.csv") %>% 
+  janitor::clean_names() %>% 
+  filter(sex == 1) %>% 
+  select(-pd_ears) %>% 
+  mutate(new_var = pd_pivot > 7)
+
+```
+
 
